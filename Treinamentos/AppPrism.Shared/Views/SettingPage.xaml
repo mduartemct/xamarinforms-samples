@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppPrism.Shared.Views.SettingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="Yellow">
+            <StackLayout Margin="10" Spacing="20">
+
+                <StackLayout
+                    BackgroundColor="Beige"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Grid BackgroundColor="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Margin="0,20"
+                            Text="Name:"
+                            VerticalOptions="Start" />
+                        <Entry Grid.Column="1" Placeholder="Enter your name" />
+                    </Grid>
+                    <!--<Grid BackgroundColor="Blue"
+                       <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name:" VerticalOptions="Start" />
+                        <Entry Placeholder="Enter your name" Grid.Column="1" />
+                    </Grid>-->
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Age:" />
+                    <Entry Placeholder="Enter your age" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Occupation:" />
+                    <Entry Placeholder="Enter your occupation" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Address:" />
+                    <Entry Placeholder="Enter your address" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

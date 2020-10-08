@@ -60,7 +60,7 @@ namespace AppPrism.Shared.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             UserProfile _profile = null;
-            //Verifica se o parametroexiste
+            //Verifica se o parametro existe
             if (parameters.ContainsKey("_paramProfile"))
             {
                //Pega o Parametro do tipo objeto

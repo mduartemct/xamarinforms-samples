@@ -4,6 +4,7 @@ using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Navigation;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace AppPrism.Shared
@@ -25,7 +26,8 @@ namespace AppPrism.Shared
             InitializeComponent();
 
             //Aqui vamos navegar para a primeira página com o prims
-            NavigationService.NavigateAsync("HomePage");
+            // NavigationService.NavigateAsync("HomePage");
+            NavigationService.NavigateAsync("LoginPage");
         }
 
         //Sobrescrever para poder registrar os tipo com o Prism e DryIoc
@@ -38,9 +40,25 @@ namespace AppPrism.Shared
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             //Registrando uma Page e a ViewModel sem usar nomeclatura padrão
             containerRegistry.RegisterForNavigation<Views.ProfilePage, ProfileViewModel>();
+            containerRegistry.RegisterForNavigation<Views.TabbedPage1>();
+            containerRegistry.RegisterForNavigation<Views.TabbedPage2>();
+            containerRegistry.RegisterForNavigation<Views.LoginPage>();
+
 
 
         }
 
+        protected override void OnStart()
+        {
+            Debug.WriteLine("OnStart");
+        }
+        protected override void OnSleep()
+        {
+            Debug.WriteLine("OnSleep");
+        }
+        protected override void OnResume()
+        {
+            Debug.WriteLine("OnResume");
+        }
     }
 }

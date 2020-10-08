@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppPrism.Shared.Views.HomePage"
-             Title="Home Page">
+<ContentPage
+    x:Class="AppPrism.Shared.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Home Page">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Xamarin Forms com Prism"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Xamarin Forms com Prism"
+                VerticalOptions="CenterAndExpand" />
+            <Button Command="{Binding GoToLoginPageCommand}" Text="Ir para LoginPage" />
 
-            <Button 
-                Text="Ir para a ProfilePage usando o Prism Navigation!"
-                Command="{Binding MyCommand}"
-             >
-            </Button>
-            
+            <Button Command="{Binding GoToTabbedInLineCommand}" Text="Ir para TabbedPage com Páginas Inline" />
+
+            <Button Command="{Binding GoToTabbedInPageCommand}" Text="Ir para TabbedPage com Páginas Individuais" />
+
+            <Button Command="{Binding MyCommand}" Text="Ir para a Profile Page usando o Prism Navigation!" />
+
+            <Button Command="{Binding GoToTabCommand}" Text="Ir para a TabPage com o Prism Navigation!" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

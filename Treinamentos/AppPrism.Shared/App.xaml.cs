@@ -27,7 +27,7 @@ namespace AppPrism.Shared
 
             //Aqui vamos navegar para a primeira página com o prims
             // NavigationService.NavigateAsync("HomePage");
-            NavigationService.NavigateAsync("LoginPage");
+            NavigationService.NavigateAsync("/LoginPage");
         }
 
         //Sobrescrever para poder registrar os tipo com o Prism e DryIoc
@@ -43,6 +43,7 @@ namespace AppPrism.Shared
             containerRegistry.RegisterForNavigation<Views.TabbedPage1>();
             containerRegistry.RegisterForNavigation<Views.TabbedPage2>();
             containerRegistry.RegisterForNavigation<Views.LoginPage>();
+            containerRegistry.RegisterForNavigation<RecoveryPasswordPage>();
 
 
 

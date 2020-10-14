@@ -3,16 +3,29 @@
     x:Class="AppPrism.Shared.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    xmlns:sfbuttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     Title="{Binding PageTitle}"
     Padding="12,20,12,0"
-    BackgroundColor="Black">
+    BackgroundColor="{StaticResource DeepOrange92}">
     <ContentPage.Content>
         <!--  Body  -->
         <StackLayout BackgroundColor="Transparent">
+            <StackLayout>
+                <busyindicator:SfBusyIndicator
+                    x:Name="busyindicator"
+                    AnimationType="Gear"
+                    IsBusy="{Binding IsBusy}"
+                    TextColor="PapayaWhip"
+                    ViewBoxHeight="25"
+                    ViewBoxWidth="25" />
+            </StackLayout>
+
             <!--  Logo  -->
             <StackLayout Margin="40,34,40,0">
                 <Image Aspect="AspectFit" Source="xamarin_logo" />
             </StackLayout>
+
 
             <!--  Inputs  -->
             <StackLayout
@@ -20,9 +33,9 @@
                 BackgroundColor="Transparent"
                 Spacing="1">
                 <Entry
-                    BackgroundColor="White"
                     Keyboard="Email"
                     Placeholder="Entre com seu email"
+                    Style="{StaticResource EntryText}"
                     Text="{Binding Email}" />
                 <Label
                     Margin="0,0,5,0"
@@ -33,9 +46,10 @@
                     TextColor="OrangeRed" />
                 <Entry
                     Margin="0,30,0,0"
-                    BackgroundColor="White"
-                    Keyboard="Text"
+                    IsPassword="True"
+                    Keyboard="Default"
                     Placeholder="Entre com sua Senha"
+                    Style="{StaticResource EntryText}"
                     Text="{Binding Senha}" />
                 <Label
                     Margin="0,0,5,0"
@@ -47,7 +61,7 @@
                 <Button
                     Margin="35,25"
                     BackgroundColor="Bisque"
-                    Command="{Binding EsqueciSenhaCommand}"
+                    Command="{Binding RecuperarSenhaCommand}"
                     CornerRadius="20"
                     FontSize="12"
                     Text="Esqueci minha Senha."
@@ -64,7 +78,40 @@
                 FontSize="12"
                 Text="Login"
                 TextColor="White" />
+            <StackLayout Spacing="10">
+                <Label
+                    Margin="20"
+                    FontSize="Default"
+                    Style="{StaticResource CorpLabel}"
+                    Text="Ou autentique com uma das opções abaixo..."
+                    TextColor="WhiteSmoke" />
+
+                <sfbuttons:SfChipGroup ChipPadding="8,8,0,0" ItemsSource="{Binding Options}">
+                    <sfbuttons:SfChipGroup.ChipLayout>
+                        <FlexLayout
+                            AlignContent="Center"
+                            AlignItems="Center"
+                            Direction="Row"
+                            HorizontalOptions="StartAndExpand"
+                            JustifyContent="Center"
+                            VerticalOptions="Center"
+                            Wrap="Wrap" />
+                    </sfbuttons:SfChipGroup.ChipLayout>
+                </sfbuttons:SfChipGroup>
+
+                <sfbuttons:SfChipGroup Type="Action">
+                    <sfbuttons:SfChipGroup.Items>
+                        <sfbuttons:SfChip Text="Extra Small" />
+                        <sfbuttons:SfChip Text="Small" />
+                        <sfbuttons:SfChip Text="Medium" />
+                        <sfbuttons:SfChip Text="Large" />
+                        <sfbuttons:SfChip Text="Extra Large" />
+                    </sfbuttons:SfChipGroup.Items>
+                </sfbuttons:SfChipGroup>
+
+            </StackLayout>
 
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

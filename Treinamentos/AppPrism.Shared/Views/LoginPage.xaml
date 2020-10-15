@@ -17,8 +17,8 @@
                     AnimationType="Gear"
                     IsBusy="{Binding IsBusy}"
                     TextColor="PapayaWhip"
-                    ViewBoxHeight="25"
-                    ViewBoxWidth="25" />
+                    ViewBoxHeight="35"
+                    ViewBoxWidth="35" />
             </StackLayout>
 
             <!--  Logo  -->

@@ -65,6 +65,8 @@ namespace AppPrism.Shared.ViewModels
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha))
             {
                 await _pageDialogService.DisplayAlertAsync("Campos Incompletos", "Email e/ou Senha não podem estar vazios", "Ok");
+                IsAuthenticated = false;
+                IsBusy = false;
                 return;
             }
             await Task.Delay(5000);
@@ -74,6 +76,7 @@ namespace AppPrism.Shared.ViewModels
             {
                 EmailError = true;
                 IsAuthenticated = false;
+                IsBusy = false;
             }
             else
             {
@@ -84,6 +87,7 @@ namespace AppPrism.Shared.ViewModels
             {
                 SenhaError = true;
                 IsAuthenticated = false;
+                IsBusy = false;
             }
             else
             {

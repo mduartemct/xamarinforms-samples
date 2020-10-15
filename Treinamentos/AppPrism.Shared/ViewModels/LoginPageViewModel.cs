@@ -1,15 +1,23 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AppPrism.Shared.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private ObservableCollection<string> _options = new ObservableCollection<string> {"Facebook", "Google", "Microsoft" };
+        public ObservableCollection<string> Options
+        {
+            get => _options;
+            set => SetProperty(ref _options, value);
+        }
+
 
         string _email;
-        public virtual string Email
+        public  string Email
         {
             get => _email;
             set => SetProperty(ref _email, value);
@@ -23,7 +31,7 @@ namespace AppPrism.Shared.ViewModels
         }
 
         string _senha;
-        public virtual string Senha
+        public  string Senha
         {
             get => _senha;
             set => SetProperty(ref _senha, value);
@@ -39,22 +47,36 @@ namespace AppPrism.Shared.ViewModels
 
         public LoginPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService) : base(pageDialogService, navigationService)
         {
+           
             EmailError = false; SenhaError = false;
             base.PageTitle = "Titulo do App";
         }
 
         //Criar um delegate Command para executar um comando da página
+        #region Comando de Login com Delegate
+
         private Prism.Commands.DelegateCommand _loginCommand;
         public Prism.Commands.DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(async () => await LoginAsync()));
 
         public bool IsAuthenticated { get;  set; }
-
         private async Task LoginAsync()
         {
+            IsBusy = true;
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha))
+            {
+                await _pageDialogService.DisplayAlertAsync("Campos Incompletos", "Email e/ou Senha não podem estar vazios", "Ok");
+                IsAuthenticated = false;
+                IsBusy = false;
+                return;
+            }
+            await Task.Delay(5000);
+
+            //IsBusy = true;
             if (!Email.Contains("mduarte_mct@hotmail.com"))
             {
                 EmailError = true;
                 IsAuthenticated = false;
+                IsBusy = false;
             }
             else
             {
@@ -65,6 +87,7 @@ namespace AppPrism.Shared.ViewModels
             {
                 SenhaError = true;
                 IsAuthenticated = false;
+                IsBusy = false;
             }
             else
             {
@@ -73,11 +96,22 @@ namespace AppPrism.Shared.ViewModels
             }
             if (IsAuthenticated)
             {
-                await base._navigationService.NavigateAsync("HomePage");
+               IsBusy = false;
+                await base._navigationService.NavigateAsync("/HomePage");
             }
+            else
+            {
+                //IsBusy = false;
+            }
+            IsBusy = false;
         }
 
+        #endregion Comando de Login com Delegate
 
+        #region Comando de Recuperar a Senha reduzido com Delegate
+        public DelegateCommand RecuperarSenhaCommand => new DelegateCommand(async () => await _navigationService.NavigateAsync("/RecoveryPasswordPage" ));
+
+        #endregion  Comando de Recuperar a Senha reduzido com Delegate
 
     }
 }

@@ -23,6 +23,14 @@ namespace AppPrism.Shared.ViewModels
         private Task<bool> _taskInit;
         protected Task<bool> TaskInit { get => _taskInit; set => _taskInit = value; }
 
+
+        private bool _isBusy = false;
+        public virtual bool IsBusy
+        {
+            get => _isBusy;
+            set { SetProperty(ref _isBusy, value); }
+        }
+
         string _pageTitle;
         public virtual string PageTitle
         {

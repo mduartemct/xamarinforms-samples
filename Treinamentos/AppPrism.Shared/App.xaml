@@ -8,6 +8,53 @@
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
-        <ResourceDictionary />
+        <ResourceDictionary>
+            <!--  definição de cores  -->
+            <Color x:Key="Tangerine92">
+                #ff8f14
+            </Color>
+
+            <Color x:Key="DeepOrange92">
+                #dd4b00
+            </Color>
+
+            <Color x:Key="DeepOcean">
+                #01384c
+            </Color>
+
+
+            <!--  Estilos para Fontes  -->
+            <OnPlatform x:Key=" BoldFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS">Montserrat-Bold</On>
+                <On Platform="Android">sans-serif</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="RegularFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS">Montserrat-Regular</On>
+                <On Platform="Android">sans-serif</On>
+            </OnPlatform>
+
+            <!--  Estilos para Controles  -->
+            <Style x:Key="CorpLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DeepOrange92}" />
+                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+
+            <Style x:Key="EntryText" TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

@@ -24,6 +24,11 @@ namespace AppPrism.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            new Syncfusion.SfBusyIndicator.XForms.iOS.SfBusyIndicatorRenderer();
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
 
             //LoadApplication(new App()); ==> Deve ser trocado pela linha debaixo para chamar o container do DryIoc
             LoadApplication(new App(new IosInitializer()));

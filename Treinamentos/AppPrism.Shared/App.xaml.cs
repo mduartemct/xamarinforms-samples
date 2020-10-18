@@ -1,4 +1,6 @@
-﻿using AppPrism.Shared.ViewModels;
+﻿using AppPrism.Shared.Interfaces;
+using AppPrism.Shared.Services;
+using AppPrism.Shared.ViewModels;
 using AppPrism.Shared.Views;
 using Prism;
 using Prism.DryIoc;
@@ -13,6 +15,7 @@ namespace AppPrism.Shared
     //Também é necessário fazer essa mudança na TAG xaml da App.xaml
     public partial class App : PrismApplication
     {
+        public static ICloudService CloudService { get; set; }
 
         //Para usar Prism tb é necessário criar ao menos esses dis construtores
         public App() : this(null) { }
@@ -25,6 +28,7 @@ namespace AppPrism.Shared
 
             InitializeComponent();
 
+            CloudService = new AzureCloudServices();
             //Aqui vamos navegar para a primeira página com o prims
             // NavigationService.NavigateAsync("HomePage");
             NavigationService.NavigateAsync("/LoginPage");

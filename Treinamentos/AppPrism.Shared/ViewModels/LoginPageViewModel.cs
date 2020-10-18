@@ -1,7 +1,9 @@
-﻿using Prism.Commands;
+﻿using AppPrism.Shared.Models;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppPrism.Shared.ViewModels
@@ -94,6 +96,15 @@ namespace AppPrism.Shared.ViewModels
                 SenhaError = false;
                 IsAuthenticated = true;
             }
+            //Faz o teste para pegar dados no Azure
+            var table = App.CloudService.GetTable<TodoItem>();
+            var list = await table.ReadAllItemsAsync();
+            if (list.Count > 0)
+            {
+              await  _pageDialogService.DisplayAlertAsync("Dados Recuperados do Azure", "Item: " + list.First().Text, "Perfeito");
+
+            }
+
             if (IsAuthenticated)
             {
                IsBusy = false;

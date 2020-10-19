@@ -58,14 +58,24 @@
                     IsVisible="{Binding SenhaError}"
                     Text="Verifique sua senha."
                     TextColor="OrangeRed" />
+
                 <Button
-                    Margin="35,25"
+                    Margin="35,5,35,5"
                     BackgroundColor="Bisque"
                     Command="{Binding RecuperarSenhaCommand}"
                     CornerRadius="20"
                     FontSize="12"
                     Text="Esqueci minha Senha."
                     TextColor="#1d3089" />
+                <Button
+                    Margin="35,5,35,20"
+                    BackgroundColor="Bisque"
+                    Command="{Binding CriarContaCommand}"
+                    CornerRadius="20"
+                    FontSize="12"
+                    Text="Criar Conta"
+                    TextColor="#1d3089" />
+
             </StackLayout>
 
             <!--  Button  -->

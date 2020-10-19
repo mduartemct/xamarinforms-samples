@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppPrism.Shared.Views.CreateLoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    xmlns:sfInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:sfbutton="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    Padding="12,20,12,0"
+    BackgroundColor="{StaticResource DeepOrange92}">
+    <ContentPage.Content>
+        <StackLayout Margin="15,20,15,10" Spacing="15">
+            <Label
+                Margin="0,5,0,25"
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="Crie sua Conta" />
+            <Entry
+                Keyboard="Email"
+                Placeholder="Entre com seu email"
+                Style="{StaticResource EntryText}"
+                Text="{Binding Email}" />
+            <Label
+                Margin="0,0,5,0"
+                FontSize="Micro"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding EmailError}"
+                Text="Verifique seu Email"
+                TextColor="Yellow" />
+            <Entry
+                Margin="0,30,0,0"
+                IsPassword="True"
+                Keyboard="Default"
+                Placeholder="Entre com sua Senha"
+                Style="{StaticResource EntryText}"
+                Text="{Binding Senha}" />
+            <Label
+                Margin="0,0,5,10"
+                FontSize="Micro"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding SenhaError}"
+                Text="Verifique sua senha."
+                TextColor="Yellow" />
+
+            <Button
+                Margin="35,5,35,5"
+                BackgroundColor="Bisque"
+                Command="{Binding CreateLoginCommand}"
+                CornerRadius="20"
+                FontSize="12"
+                Text="Criar Conta"
+                TextColor="#1d3089" />
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

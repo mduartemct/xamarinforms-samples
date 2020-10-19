@@ -29,6 +29,7 @@ namespace AppPrism.iOS
             Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
             Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
             Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
+            Syncfusion.XForms.iOS.TextInputLayout.SfTextInputLayoutRenderer.Init();
 
             //LoadApplication(new App()); ==> Deve ser trocado pela linha debaixo para chamar o container do DryIoc
             LoadApplication(new App(new IosInitializer()));

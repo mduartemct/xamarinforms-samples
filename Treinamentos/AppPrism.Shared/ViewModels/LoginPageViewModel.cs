@@ -124,5 +124,7 @@ namespace AppPrism.Shared.ViewModels
 
         #endregion  Comando de Recuperar a Senha reduzido com Delegate
 
+        public DelegateCommand CriarContaCommand => new DelegateCommand(async () => await _navigationService.NavigateAsync("/CreateLoginPage"));
+
     }
 }

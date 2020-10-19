@@ -8,6 +8,7 @@ namespace AppPrism.Shared.Models
     {
         public string Name { get; set; }
 
+        //Colocar a senha aqui
         public string AuthenticationMethod { get; set; }
 
         public string Email { get; set; }

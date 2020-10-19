@@ -48,6 +48,7 @@ namespace AppPrism.Shared
             containerRegistry.RegisterForNavigation<Views.TabbedPage2>();
             containerRegistry.RegisterForNavigation<Views.LoginPage>();
             containerRegistry.RegisterForNavigation<RecoveryPasswordPage>();
+            containerRegistry.RegisterForNavigation<CreateLoginPage, CreateLoginViewModel>();
 
 
 

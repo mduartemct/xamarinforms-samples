@@ -4,6 +4,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,14 @@ namespace AppPrism.Shared.ViewModels
         public bool IsCreated { get; set; }
         private async Task CreateLoginAsync()
         {
+            var x = Xamarin.Essentials.Connectivity.NetworkAccess;
+            
+            var profiles = Xamarin.Essentials.Connectivity.ConnectionProfiles;
+            if (profiles.Contains(Xamarin.Essentials.ConnectionProfile.WiFi))
+            {
+                // Active Wi-Fi connection.
+            }
+
             IsBusy = true;
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha))
             {
@@ -72,9 +81,9 @@ namespace AppPrism.Shared.ViewModels
                 //2 - Execute a operação de CRUD necessária
                 var ret = await _appUserTable.CreateItemAsync(_appUser);
 
-                if (ret==null)
+                if (ret!=null)
                 {
-
+                    await _pageDialogService.DisplayAlertAsync("Conta Criada", "Conta Criada com Sucesso", "OK");
                 }
             }
             catch (Exception)

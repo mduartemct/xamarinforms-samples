@@ -28,7 +28,8 @@ namespace AppPrism.Shared
 
             InitializeComponent();
 
-            CloudService = new AzureCloudServices();
+            //CloudService = new AzureCloudServices();
+           
             //Aqui vamos navegar para a primeira página com o prims
             // NavigationService.NavigateAsync("HomePage");
             NavigationService.NavigateAsync("/LoginPage");
@@ -50,7 +51,8 @@ namespace AppPrism.Shared
             containerRegistry.RegisterForNavigation<RecoveryPasswordPage>();
             containerRegistry.RegisterForNavigation<CreateLoginPage, CreateLoginViewModel>();
 
-
+            //Registro de Serviços
+            containerRegistry.Register<ICloudService, AzureCloudServices>();
 
         }
 

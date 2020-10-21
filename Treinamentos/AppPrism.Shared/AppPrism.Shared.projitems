@@ -15,6 +15,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICloudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICloudTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILoginProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AppUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CorpUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TableData.cs" />

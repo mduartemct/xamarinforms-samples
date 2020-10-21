@@ -88,6 +88,14 @@
                 FontSize="12"
                 Text="Login"
                 TextColor="White" />
+            <Button
+                Margin="10,05"
+                BackgroundColor="Orange"
+                Command="{Binding LoginAdCommand}"
+                CornerRadius="20"
+                FontSize="12"
+                Text="Azure AD"
+                TextColor="White" />
             <StackLayout Spacing="10">
                 <Label
                     Margin="20"

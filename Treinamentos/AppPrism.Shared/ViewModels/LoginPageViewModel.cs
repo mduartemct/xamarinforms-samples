@@ -1,8 +1,11 @@
-﻿using AppPrism.Shared.Models;
+﻿using AppPrism.Shared.Interfaces;
+using AppPrism.Shared.Models;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +13,8 @@ namespace AppPrism.Shared.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly ICloudService _cloudService;
+
         private ObservableCollection<string> _options = new ObservableCollection<string> {"Facebook", "Google", "Microsoft" };
         public ObservableCollection<string> Options
         {
@@ -26,6 +31,7 @@ namespace AppPrism.Shared.ViewModels
         }
 
         bool _emailError;
+
         public virtual bool EmailError
         {
             get => _emailError;
@@ -47,10 +53,10 @@ namespace AppPrism.Shared.ViewModels
         }
 
 
-        public LoginPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService) : base(pageDialogService, navigationService)
+        public LoginPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService, ICloudService cloudService) : base(pageDialogService, navigationService)
         {
-           
-            EmailError = false; SenhaError = false;
+            _cloudService = cloudService;
+             EmailError = false; SenhaError = false;
             base.PageTitle = "Titulo do App";
         }
 
@@ -97,7 +103,8 @@ namespace AppPrism.Shared.ViewModels
                 IsAuthenticated = true;
             }
             //Faz o teste para pegar dados no Azure
-            var table = App.CloudService.GetTable<TodoItem>();
+            //var table = App.CloudService.GetTable<TodoItem>();
+            var table = _cloudService.GetTable<TodoItem>();
             var list = await table.ReadAllItemsAsync();
             if (list.Count > 0)
             {
@@ -125,6 +132,56 @@ namespace AppPrism.Shared.ViewModels
         #endregion  Comando de Recuperar a Senha reduzido com Delegate
 
         public DelegateCommand CriarContaCommand => new DelegateCommand(async () => await _navigationService.NavigateAsync("/CreateLoginPage"));
+
+        #region Comando de Login com Azure AD
+
+        private Prism.Commands.DelegateCommand _loginAdCommand;
+        public Prism.Commands.DelegateCommand LoginAdCommand => _loginAdCommand ?? (_loginAdCommand = new DelegateCommand(async () => await LoginAdAsync()));
+
+        private async Task LoginAdAsync()
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+            IsAuthenticated = false;
+            try
+            {
+                await _cloudService.LoginAsync();
+                IsAuthenticated = true;
+                //Faz o teste para pegar dados no Azure
+                //var table = App.CloudService.GetTable<TodoItem>();
+                var table = _cloudService.GetTable<TodoItem>();
+                var list = await table.ReadAllItemsAsync();
+                if (list.Count > 0)
+                {
+                    await _pageDialogService.DisplayAlertAsync("Dados Recuperados do Azure", "Item: " + list.First().Text, "Autenticado");
+                   
+                }
+
+                if (IsAuthenticated)
+                {
+                    IsBusy = false;
+                    await base._navigationService.NavigateAsync("/HomePage");
+                }
+                else
+                {
+                    //IsBusy = false;
+                }
+                IsBusy = false;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ExecuteLoginCommand] Error = {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        #endregion Comando de Login com Azure AD
+
 
     }
 }

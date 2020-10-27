@@ -11,5 +11,11 @@ namespace AppPrism.Shared.Interfaces
         ICloudTable<T> GetTable<T>() where T : TableData;
 
         Task LoginAsync();
+
+        /// <summary>
+        /// This matches the JSON format from the /.auth/me
+        /// </summary>
+        /// <returns></returns>
+        Task<AppServiceIdentity> GetIdentityAsync();
     }
 }

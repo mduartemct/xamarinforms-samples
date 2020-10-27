@@ -13,6 +13,7 @@ namespace AppPrism.Shared.Services
     {
         Microsoft.WindowsAzure.MobileServices.MobileServiceClient _client;
         private readonly ILoginProvider _loginProvider;
+        List<AppServiceIdentity> identities = null;
 
         public AzureCloudServices(ILoginProvider loginProvider)
         {
@@ -29,6 +30,23 @@ namespace AppPrism.Shared.Services
         {
             //var loginProvider = DependencyService.Get<ILoginProvider>();
             return _loginProvider.LoginAsync(_client);
+        }
+
+        
+        public async Task<AppServiceIdentity> GetIdentityAsync()
+        {
+            if (_client.CurrentUser == null || _client.CurrentUser?.MobileServiceAuthenticationToken == null)
+            {
+                throw new InvalidOperationException("Not Authenticated");
+            }
+            if (identities == null)
+            {
+                identities = await _client.InvokeApiAsync<List<AppServiceIdentity>>("/.auth/me");
+            }
+
+            if (identities.Count > 0)
+                return identities[0];
+            return null;
         }
     }
 }

@@ -3,7 +3,7 @@
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<application android:label="AppPrism.Android" android:theme="@style/MainTheme">
-		<!-- OAuth Facebook Azure -->
+		<!-- OAuth Azure -->
 		<activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity" android:launchMode="singleTop" android:noHistory="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />

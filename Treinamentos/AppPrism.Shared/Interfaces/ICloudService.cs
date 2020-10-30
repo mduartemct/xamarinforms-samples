@@ -8,7 +8,11 @@ namespace AppPrism.Shared.Interfaces
 {
     public interface ICloudService
     {
+        //Tabelas Online == Síncronas
         ICloudTable<T> GetTable<T>() where T : TableData;
+
+        //Tabelas Offline == Assíncronas
+        Task<ICloudTable<T>> GetTableAsync<T>() where T : TableData;
 
         Task LoginAsync();
 

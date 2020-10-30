@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SqlLite.Pages.ContactsDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <TableView Margin="16,0" Intent="Form">
+        <TableRoot>
+            <TableSection Title="Name">
+                <EntryCell Label="First name" Text="{Binding Path=Contact.FirstName}" />
+                <EntryCell Label="Last name" Text="{Binding Path=Contact.LastName}" />
+            </TableSection>
+            <TableSection Title="Contact">
+                <EntryCell
+                    Keyboard="Numeric"
+                    Label="Phone"
+                    Text="{Binding Path=Contact.Phone}" />
+                <EntryCell
+                    Keyboard="Email"
+                    Label="Email"
+                    Text="{Binding Path=Contact.Email}" />
+            </TableSection>
+            <TableSection Title="Other">
+                <SwitchCell On="{Binding Path=Contact.IsFavorite}" Text="Add to Favorites" />
+            </TableSection>
+            <TableSection>
+                <ViewCell>
+                    <Button Command="{Binding SaveCommand}" Text="Save" />
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

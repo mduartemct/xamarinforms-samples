@@ -19,6 +19,12 @@ namespace AppPrism.Shared.Services
             this.table = client.GetTable<T>();
         }
 
+        public async Task PullAsync()
+        {
+            string queryName = $"incsync_{typeof(T).Name}";
+            await table.PullAsync(queryName, table.CreateQuery());
+        }
+
         public async Task<T> CreateItemAsync(T item)
         {
             await table.InsertAsync(item);
@@ -28,6 +34,8 @@ namespace AppPrism.Shared.Services
         {
             await table.DeleteAsync(item);
         }
+
+       
 
         public async Task<ICollection<T>> ReadAllItemsAsync()
         {

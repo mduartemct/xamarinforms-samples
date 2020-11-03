@@ -1,21 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="SqlLite.Pages.ContactsPage"
-    x:Name="contactsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="contactsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddContactCommand}" />
+        <ToolbarItem Command="{Binding AddContactCommand}" Text="Add" />
     </ContentPage.ToolbarItems>
 
-    <ListView ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" HasUnevenRows="True" SeparatorColor="Gray" ItemSelected="OnContactSelected">
+    <ListView
+        HasUnevenRows="True"
+        ItemSelected="OnContactSelected"
+        ItemsSource="{Binding Contacts}"
+        SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+        SeparatorColor="Gray">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ImageCell ImageSource="{Binding ProfileImage}" Text="{Binding FullName}" Detail="{Binding Phone}" DetailColor="Black" TextColor="Red">
+                <ImageCell
+                    Detail="{Binding Phone}"
+                    DetailColor="Black"
+                    ImageSource="{Binding ProfileImage}"
+                    Text="{Binding FullName}"
+                    TextColor="Blue">
                     <ImageCell.ContextActions>
-                        <MenuItem Text="Call" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.CallContactCommand}" CommandParameter="{Binding .}" />
-                        <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.DeleteContactCommand}" CommandParameter="{Binding .}" />
+                        <MenuItem
+                            Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.CallContactCommand}"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="true"
+                            Text="Call" />
+                        <MenuItem
+                            Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.DeleteContactCommand}"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="true"
+                            Text="Delete" />
                     </ImageCell.ContextActions>
                 </ImageCell>
             </DataTemplate>

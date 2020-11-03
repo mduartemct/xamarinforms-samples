@@ -12,8 +12,10 @@ namespace SqlLite.iOS.Persistence
     {
         public SQLiteAsyncConnection GetConnection()
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var path = Path.Combine(documentsPath, "MySQLite.db3");
+            // we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
+            // (they don't want non-user-generated data in Documents)
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var path = Path.Combine(documentsPath, "MySQLite.db3", "Library");
             return new SQLiteAsyncConnection(path);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System;
 
 namespace SqlLite.Models
 {
@@ -15,5 +16,7 @@ namespace SqlLite.Models
         [MaxLength(255)]
         public string Email { get; set; }
         public bool IsFavorite { get; set; }
+
+      
     }
 }

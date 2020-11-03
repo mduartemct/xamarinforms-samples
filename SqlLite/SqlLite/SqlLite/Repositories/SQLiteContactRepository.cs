@@ -3,7 +3,9 @@ using SqlLite.Models;
 using SqlLite.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SqlLite.Repositories
@@ -11,7 +13,7 @@ namespace SqlLite.Repositories
     public class SQLiteContactRepository : IContactRepository
     {
         private SQLiteAsyncConnection _connection;
-
+        private Object MyCloudAPI;
         public SQLiteContactRepository(ISQLiteDb db)
         {
             _connection = db.GetConnection();
@@ -23,7 +25,26 @@ namespace SqlLite.Repositories
         }
         public async Task DeleteContact(Contact contact)
         {
-            await _connection.DeleteAsync(contact);
+            try
+            {
+                //Delete Local
+                await _connection.DeleteAsync(contact);
+                //Delete na API
+                //MyCloudAPI.Delete(contact);
+                //if (Nao deletou )
+                //{
+                //contact.IsSync = false;
+                     //rollback
+                //}
+                
+            }
+            catch (Exception)
+            {
+                //reverter tudo
+                throw;
+            }
+           
+
         }
         public async Task AddContact(Contact contact)
         {

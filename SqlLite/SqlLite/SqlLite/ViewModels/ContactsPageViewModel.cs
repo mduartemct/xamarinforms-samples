@@ -49,10 +49,12 @@ namespace SqlLite.ViewModels
         private async Task LoadData()
         {
             if (_isDataLoaded)
-                return;
+            { Contacts.Clear(); }
+            //    return;
 
             _isDataLoaded = true;
             var contacts = await _contactStore.GetContactsAsync();
+           
             foreach (var contact in contacts)
                 Contacts.Add(new ContactViewModel(contact));
         }
